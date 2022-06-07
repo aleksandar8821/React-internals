@@ -28,3 +28,8 @@ img {
   padding: 10px;
   margin-bottom: 15px;
 }
+
+.example input {
+  display: block;
+  margin-top: 10px;
+}

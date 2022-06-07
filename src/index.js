@@ -1,25 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>, document.getElementById('root')
-// );
+const render = () => {
+  document.getElementById('div1').innerHTML = `
+    <div class="example">
+      DOM API
+      <input />
+      <pre>${(new Date).toLocaleTimeString()}</pre>
+    </div>
+  `;
 
-document.getElementById('div1').innerHTML = `
-	<div class="example">
-    DOM API
-  </div>
-`;
+  ReactDOM.render(
+    React.createElement(
+      'div',
+      { className: 'example' },
+      'React API',
+      React.createElement('input', null),
+      React.createElement('pre', null, (new Date).toLocaleTimeString())
+    ),
+    document.getElementById('div2')
+  );
+};
 
-ReactDOM.render(
-  React.createElement(
-    'div',
-    { className: 'example' },
-    'React API',
-  ),
-  document.getElementById('div2'),
-);
+setInterval(render, 1000);
