@@ -7,7 +7,25 @@ function App() {
 
   console.log(markup)
 
-  return markup;
+  return (
+    <>
+      {markup}
+      <br />
+      <br />
+      <div id="container">
+        <img src={require("./img/initial-render.png")} />
+        <br />
+        <br />
+        <hr />
+        <img src={require("./img/re-render.png")} />
+        <br />
+        <br />
+        <hr />
+        <img src={require("./img/re-render-discarded.png")} />
+        <h3>Re-render &#x2260; Updating the DOM</h3>
+      </div>
+    </>
+  );
 }
 
 export default App;
