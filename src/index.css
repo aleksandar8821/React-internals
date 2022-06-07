@@ -22,3 +22,9 @@ code {
 img {
   width: 1000px;
 }
+
+.example {
+  border: 1px solid gray;
+  padding: 10px;
+  margin-bottom: 15px;
+}
