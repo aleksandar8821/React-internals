@@ -1,22 +1,31 @@
 import { useState } from "react";
 
-function UseState() {
-  const [counter, setCounter] = useState(0);
+const initState = {
+  fname: "Petar",
+  lname: "Petrovic",
+};
 
-  const increaseByOne = () => {
-    setCounter((prevState) => prevState + 1);
+function UseState() {
+  const [person, setPerson] = useState(initState);
+
+  const changeName = () => {
+    person.fname = "Marko";
+    person.lname = "Markovic";
+    setPerson(person);
+
+    // const newPerson = { ...person };
+    // newPerson.fname = "Marko";
+    // newPerson.lname = "Markovic";
+    // setPerson(newPerson);
   };
 
   console.log("rendered");
 
   return (
     <div>
-      <button onClick={increaseByOne}>Count - {counter}</button>
-      <button onClick={() => setCounter(0)}>Count to 0</button>
-      <button onClick={() => setCounter(5)}>Count to 5</button>
-      <br />
-      <br />
-      <img src={require("./img/safety-net-re-render.png")} />
+      <button onClick={changeName}>
+        {person.fname} {person.lname}
+      </button>
     </div>
   );
 }
