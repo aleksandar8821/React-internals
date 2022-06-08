@@ -1,50 +1,24 @@
-function App() {
-  const markup = <div>
-    <h1 id="title">
-      Hello World!
-    </h1>
-  </div>
+import { useState } from "react";
 
-  console.log(markup)
+function App() {
+  const [counter, setCounter] = useState(0);
+
+  const increaseByOne = () => {
+    setCounter((prevState) => prevState + 1);
+  };
+
+  console.log("rendered");
 
   return (
     <>
-      {markup}
+      <button type="button" onClick={increaseByOne}>
+        Click me!
+      </button>
       <br />
       <br />
-      <div id="container">
-        <img src={require("./img/initial-render.png")} />
-        <br />
-        <br />
-        <hr />
-        <img src={require("./img/re-render.png")} />
-        <br />
-        <br />
-        <hr />
-        <img src={require("./img/re-render-discarded.png")} />
-        <h3>Re-render &#x2260; Updating the DOM</h3>
-      </div>
+      You clicked {counter} times!
     </>
   );
 }
 
 export default App;
-
-// const output = {
-//   $$typeof: Symbol(react.element),
-//   key: null,
-//   props: {
-//     children: {
-//       $$typeof: Symbol(react.element),
-//       key: null,
-//       props: {
-//         children: "Hello World!",
-//         id: "title",
-//       },
-//       ref: null,
-//       type: "h1"
-//     },
-//   },
-//   ref: null,
-//   type: "div"
-// }
