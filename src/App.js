@@ -1,7 +1,7 @@
-import UseState from "./UseState";
+import { Parent } from "./Parent";
 
 function App() {
-  return <UseState />;
+  return <Parent />;
 }
 
 export default App;
