@@ -1,12 +1,15 @@
-import React from 'react'
+import { useEffect } from 'react'
 
-export const Child = ({ passedName }) => {
+export const Child = () => {
+    useEffect(() => {
+        console.log('Child Effect')
+    })
+
     console.log('Child Render')
+
     return (
         <div>
-            Child component - {passedName}
+            Child component
         </div>
     )
 }
-
-export const MemoizedChild = React.memo(Child);
