@@ -4,12 +4,11 @@ function App() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const id = setTimeout(() => {
-      console.log("count value inside interval callback", count);
-      setCount(count + 1);
+    const id = setInterval(() => {
+      setCount((previousCount) => previousCount + 1);
     }, 2000);
-    return () => clearTimeout(id);
-  }, [count]);
+    return () => clearInterval(id);
+  }, []);
 
   return <h1>{count}</h1>;
 }
