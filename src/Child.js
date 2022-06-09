@@ -1,15 +1,21 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from "react";
 
 export const Child = () => {
-    useEffect(() => {
-        console.log('Child Effect')
-    })
+  useEffect(() => {
+    console.log("Child Mounted");
 
-    console.log('Child Render')
+    return () => {
+      console.log("Child Unmounted");
+    };
+  }, []);
 
-    return (
-        <div>
-            Child component
-        </div>
-    )
-}
+  const [foo, setFoo] = useState();
+
+  useEffect(() => {
+    return () => {
+      console.log("Unmount invokes cleanup for all effects");
+    };
+  }, [foo]);
+
+  return <div>Child component</div>;
+};
