@@ -2,38 +2,38 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [counter, setCounter] = useState(0);
-
-  const increaseByOne = () => {
-    setCounter((prevState) => prevState + 1);
-  };
+  const [counter2, setCounter2] = useState(0);
 
   useEffect(() => {
-    console.log("effect executed with counter value: ", counter);
+    console.log("effect executed");
 
-    return function cleanup() {
-      // Intro to stale closures
-      console.log("cleanup executed with counter value: ", counter);
-    };
-  });
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     console.log(Math.floor(Math.random() * 10));
-  //   }, 1000);
-
-  //   return function cleanup() {
-  //     clearInterval(interval);
-  //   };
-  // });
+    // return function cleanup() {
+    //   console.log("cleanup executed");
+    // };
+  }, [counter2]);
 
   return (
     <>
-      <button type="button" onClick={increaseByOne}>
-        Click me!
+      <button
+        type="button"
+        onClick={() => setCounter((prevState) => prevState + 1)}
+      >
+        Counter
       </button>
       <br />
       <br />
-      You clicked {counter} times!
+      {counter}
+      <br />
+      <br />
+      <button
+        type="button"
+        onClick={() => setCounter2((prevState) => prevState + 1)}
+      >
+        Counter2
+      </button>
+      <br />
+      <br />
+      {counter2}
     </>
   );
 }
