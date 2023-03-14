@@ -21,7 +21,8 @@ div {
   margin-bottom: 10px;
 }
 
-img {
-  width: 1000px;
+#imgContainer {
+  display: flex;
+  align-items: flex-start;
   margin: 25px 0;
 }

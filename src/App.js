@@ -1,13 +1,22 @@
 import { useState } from "react";
-import { Rating } from "./Rating";
 
 function App() {
   const [foodStores, setFoodStores] = useState(["Narandza", "Univer"]);
 
   return (
     <>
-      {foodStores.map(store => <Rating name={store} />)}
-      <button onClick={() => setFoodStores(["Jordan", ...foodStores])}>Add</button>
+      {foodStores.map(store => <div>{store}</div>)}
+      <button onClick={() => setFoodStores([...foodStores, "Jordan"])}>Add</button>
+      <br />
+      <br />
+      <div id="imgContainer">
+        <img src={require("./img/list3.png")} />
+        <img src={require("./img/list1.png")} />
+      </div>
+      <div id="imgContainer">
+        <img src={require("./img/list2.png")} />
+        <img src={require("./img/list1.png")} />
+      </div>
     </>
   );
 }
