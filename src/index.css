@@ -13,8 +13,12 @@ code {
     monospace;
 }
 
-button {
+button, span {
   margin-right: 15px;
+}
+
+div {
+  margin-bottom: 10px;
 }
 
 img {

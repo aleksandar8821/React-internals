@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Rating } from "./Rating";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [foodStores, setFoodStores] = useState(["Narandza", "Univer"]);
 
-  useEffect(() => {
-    const id = setInterval(() => {
-      setCount((previousCount) => previousCount + 1);
-    }, 2000);
-    return () => clearInterval(id);
-  }, []);
-
-  return <h1>{count}</h1>;
+  return (
+    <>
+      {foodStores.map(store => <Rating name={store} />)}
+      <button onClick={() => setFoodStores(["Jordan", ...foodStores])}>Add</button>
+    </>
+  );
 }
 
 export default App;
