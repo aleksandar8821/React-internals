@@ -1,22 +1,18 @@
-import { useState } from "react";
+import useFetch from "./useFetch";
 
 function App() {
-  const [foodStores, setFoodStores] = useState(["Narandza", "Univer"]);
+  const url = 'https://jsonplaceholder.typicode.com/posts';
+  const { data, loading, error } = useFetch(url);
+
+  console.log("component call");
 
   return (
     <>
-      {foodStores.map(store => <div>{store}</div>)}
-      <button onClick={() => setFoodStores([...foodStores, "Jordan"])}>Add</button>
-      <br />
-      <br />
-      <div id="imgContainer">
-        <img src={require("./img/list3.png")} />
-        <img src={require("./img/list1.png")} />
-      </div>
-      <div id="imgContainer">
-        <img src={require("./img/list2.png")} />
-        <img src={require("./img/list1.png")} />
-      </div>
+      <h1>Posts</h1>
+      {data?.map(post => <>
+        <h3>{post.title}</h3>
+        <div>{post.body}</div>
+      </>)}
     </>
   );
 }
