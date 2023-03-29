@@ -1,18 +1,24 @@
 import useFetch from "./useFetch";
+import { useEffect } from "react";
 
 function App() {
   const url = 'https://jsonplaceholder.typicode.com/posts';
-  const { data, loading, error } = useFetch(url);
+  const { makeRequest, data, loading, error } = useFetch(url);
+
+  // useEffect(() => {
+  //   makeRequest(url);
+  // }, [makeRequest])
 
   console.log("component call");
 
   return (
     <>
       <h1>Posts</h1>
-      {data?.map(post => <>
+      <button onClick={() => makeRequest(url)}>Fetch posts</button>
+      {data?.map(post => <div key={post.title}>
         <h3>{post.title}</h3>
         <div>{post.body}</div>
-      </>)}
+      </div>)}
     </>
   );
 }
