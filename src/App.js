@@ -1,33 +1,17 @@
-import { useState, useTransition } from "react";
+import { useState, useDeferredValue } from 'react';
+import SlowList from './SlowList.js';
 
-function App() {
-  const [isPending, startTransition] = useTransition();
-  const [input, setInput] = useState("");
-  const [list, setList] = useState([]);
+export default function App() {
+  const [text, setText] = useState('');
+  const deferredText = useDeferredValue(text);
 
-  const LIST_SIZE = 10000;
-
-  function handleChange(e) {
-    startTransition(() => {
-      const l = [];
-      for (let i = 0; i < LIST_SIZE; i++) {
-        l.push(e.target.value);
-      }
-      setList(l);
-    })
-    setInput(e.target.value);
-  }
+  console.log(text, deferredText);
 
   return (
     <>
-      <input type="text" value={input} onChange={handleChange} />
-      {
-        list.map((item, index) => {
-          return <div key={index}>{item}</div>
-        })
-      }
+      <input value={text} onChange={e => setText(e.target.value)} />
+      <SlowList text={deferredText} />
     </>
   );
 }
 
-export default App;
