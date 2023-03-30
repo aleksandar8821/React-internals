@@ -1,24 +1,31 @@
-import useFetch from "./useFetch";
-import { useEffect } from "react";
+import { useState, useTransition } from "react";
 
 function App() {
-  const url = 'https://jsonplaceholder.typicode.com/posts';
-  const { makeRequest, data, loading, error } = useFetch(url);
+  const [isPending, startTransition] = useTransition();
+  const [input, setInput] = useState("");
+  const [list, setList] = useState([]);
 
-  // useEffect(() => {
-  //   makeRequest(url);
-  // }, [makeRequest])
+  const LIST_SIZE = 10000;
 
-  console.log("component call");
+  function handleChange(e) {
+    startTransition(() => {
+      const l = [];
+      for (let i = 0; i < LIST_SIZE; i++) {
+        l.push(e.target.value);
+      }
+      setList(l);
+    })
+    setInput(e.target.value);
+  }
 
   return (
     <>
-      <h1>Posts</h1>
-      <button onClick={() => makeRequest(url)}>Fetch posts</button>
-      {data?.map(post => <div key={post.title}>
-        <h3>{post.title}</h3>
-        <div>{post.body}</div>
-      </div>)}
+      <input type="text" value={input} onChange={handleChange} />
+      {
+        list.map((item, index) => {
+          return <div key={index}>{item}</div>
+        })
+      }
     </>
   );
 }
